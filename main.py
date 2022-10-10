@@ -186,13 +186,7 @@ def catch_all_v2():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    data = nowPlaying()
-    svg = makeSVG(data)
-
-    resp = Response(svg, mimetype="image/svg+xml")
-    resp.headers["Cache-Control"] = "s-maxage=1"
-
-    return resp
+    return "ok", 200
 
 
 if __name__ == "__main__":
