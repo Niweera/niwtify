@@ -106,7 +106,6 @@ def catch_all_v2():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    print(os.environ)
     return "ok", 200
 
 
