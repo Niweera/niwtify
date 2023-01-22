@@ -62,18 +62,6 @@ def nowPlaying():
     return response.json()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def setSpotifyObjectV2(item):
     musicLink = item["album"]["external_urls"]
     artistName = item["artists"][0]["name"].replace("&", "&amp;")
@@ -89,8 +77,9 @@ def setSpotifyObjectV2(item):
 
 
 
-@app.route("/v2")
-def catch_all_v2():
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def catch_all(path):
     data = nowPlaying()
 
     if data == {}:
@@ -102,11 +91,6 @@ def catch_all_v2():
         item = data["item"]
 
     return setSpotifyObjectV2(item)
-
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def catch_all(path):
-    return "ok", 200
 
 
 if __name__ == "__main__":
